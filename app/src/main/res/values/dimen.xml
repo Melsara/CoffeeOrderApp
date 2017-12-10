@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddingDp">16dp</dimen>
+    <dimen name="halfPaddingDp">8dp</dimen>
+    <dimen name="marginDp">16dp</dimen>
+    <dimen name="halfMarginDp">8dp</dimen>
+    <dimen name="fontSize">16sp</dimen>
+    <dimen name="quantityPicker">48dp</dimen>
+</resources>
