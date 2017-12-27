@@ -10,6 +10,9 @@ import java.text.NumberFormat;
 public class MainActivity extends Activity {
 
     int quantity;
+    int price = 5;
+    int calculatedPrice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +24,37 @@ public class MainActivity extends Activity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = 5;
-        int totalPrice = quantity*price;
+
+        calculatePrice();
+        //String priceMessage = "You owe " + calculatedPrice + "$, dude! \n" + thankYou;
+        createOrderSummary(calculatedPrice);
+    }
+
+
+    /** Creates the order summary.
+     *
+     * @params calculatedPrice
+     */
+
+    private String createOrderSummary (int calculatedPrice) {
+        String name = "name ";
+        String surname = "surname";
         String thankYou = "Thank you!";
-        String priceMessage = "You owe " + totalPrice + "$, dude! \n" + thankYou;
-        displayMessage(priceMessage);
+        String orderSummary = "Name: " + name + surname + "\nQuantity: " + quantity + "\nTotal: " + calculatedPrice + "\n"  + thankYou;
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(orderSummary);
+        return orderSummary;
+    }
+
+    /**
+     * Calculates the price of the order.
+     * 
+     * @return calculated price of the order
+     *
+     */
+    private int calculatePrice() {
+        calculatedPrice = quantity * price;
+        return calculatedPrice;
     }
 
     /**
@@ -34,7 +63,7 @@ public class MainActivity extends Activity {
 
     public void increment (View view) {
         quantity = quantity +1;
-        display(quantity);
+        displayQuantity (quantity);
     }
 
     /**
@@ -43,15 +72,15 @@ public class MainActivity extends Activity {
 
     public void decrement (View view) {
         quantity = quantity -1;
-        display(quantity);
+        displayQuantity (quantity);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity (int coffeeQuantity) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + coffeeQuantity);
     }
 
     /**
@@ -69,4 +98,5 @@ public class MainActivity extends Activity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message);
     }
+
 }
