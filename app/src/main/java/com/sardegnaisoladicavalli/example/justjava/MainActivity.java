@@ -2,7 +2,9 @@ package com.sardegnaisoladicavalli.example.justjava;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -24,25 +26,29 @@ public class MainActivity extends Activity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-
         calculatePrice();
         //String priceMessage = "You owe " + calculatedPrice + "$, dude! \n" + thankYou;
-        createOrderSummary(calculatedPrice);
+        CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
+        Boolean isChecked = topping1.isChecked();
+        String message = createOrderSummary(calculatedPrice, isChecked);
+        displayMessage(message);
     }
 
 
     /** Creates the order summary.
      *
-     * @params calculatedPrice
+     * @param calculatedPrice
+     * @param isChecked
      */
 
-    private String createOrderSummary (int calculatedPrice) {
-        String name = "name ";
-        String surname = "surname";
-        String thankYou = "Thank you!";
-        String orderSummary = "Name: " + name + surname + "\nQuantity: " + quantity + "\nTotal: " + calculatedPrice + "\n"  + thankYou;
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(orderSummary);
+    private String createOrderSummary (int calculatedPrice, boolean isChecked) {
+        String orderSummary = "name " + "surname\n";
+        orderSummary += "Add whipped cream? " + isChecked + "\n";
+        orderSummary += "Quantity: " + quantity + "\n";
+        orderSummary += "Total: " + calculatedPrice + "\n";
+        //String orderSummary = "Name: " + name + surname + "\nQuantity: " + quantity + "\nTotal: " + calculatedPrice + "\n"  + thankYou;
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(orderSummary);
         return orderSummary;
     }
 
@@ -87,7 +93,7 @@ public class MainActivity extends Activity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
@@ -95,7 +101,7 @@ public class MainActivity extends Activity {
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         priceTextView.setText(message);
     }
 

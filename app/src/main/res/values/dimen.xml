@@ -6,4 +6,5 @@
     <dimen name="halfMarginDp">8dp</dimen>
     <dimen name="fontSize">16sp</dimen>
     <dimen name="quantityPicker">48dp</dimen>
+    <dimen name="checkboxPadding">24dp</dimen>
 </resources>
