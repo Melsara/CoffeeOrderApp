@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
      */
 
     private String createOrderSummary (int calculatedPrice, String topping1Y, String topping2Y, String userNameString) {
-        String orderSummary = userNameString + "\n";
+        String orderSummary = "Neme: " + userNameString + "\n";
         orderSummary += "Add whipped cream? " + topping1Y + "\n";
         orderSummary += "Add chocolate topping? " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
