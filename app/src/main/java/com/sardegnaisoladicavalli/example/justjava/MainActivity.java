@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -34,7 +35,9 @@ public class MainActivity extends Activity {
         CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
         Boolean isChecked_2 = topping2.isChecked();
         String topping2Y = isChecked_2 ? "Yes" : "No";
-        String message = createOrderSummary(calculatedPrice, topping1Y, topping2Y);
+        EditText userName = (EditText) findViewById(R.id.userName);
+        String userNameString = userName.getText().toString();
+        String message = createOrderSummary(calculatedPrice, topping1Y, topping2Y, userNameString);
         displayMessage(message);
     }
 
@@ -47,8 +50,8 @@ public class MainActivity extends Activity {
      * @return orderSummary
      */
 
-    private String createOrderSummary (int calculatedPrice, String topping1Y, String topping2Y) {
-        String orderSummary = "name " + "surname\n";
+    private String createOrderSummary (int calculatedPrice, String topping1Y, String topping2Y, String userNameString) {
+        String orderSummary = userNameString + "\n";
         orderSummary += "Add whipped cream? " + topping1Y + "\n";
         orderSummary += "Add chocolate topping? " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
