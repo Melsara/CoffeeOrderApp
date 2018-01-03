@@ -29,21 +29,28 @@ public class MainActivity extends Activity {
         calculatePrice();
         //String priceMessage = "You owe " + calculatedPrice + "$, dude! \n" + thankYou;
         CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
-        Boolean isChecked = topping1.isChecked();
-        String message = createOrderSummary(calculatedPrice, isChecked);
+        Boolean isChecked_1 = topping1.isChecked();
+        String topping1Y = isChecked_1 ? "Yes" : "No";
+        CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
+        Boolean isChecked_2 = topping2.isChecked();
+        String topping2Y = isChecked_2 ? "Yes" : "No";
+        String message = createOrderSummary(calculatedPrice, topping1Y, topping2Y);
         displayMessage(message);
     }
 
 
     /** Creates the order summary.
      *
-     * @param calculatedPrice
-     * @param isChecked
+     * @param calculatedPrice (price of the order)
+     * @param topping1Y (whipped cream topping)
+     * @param topping2Y (chocolate topping)
+     * @return orderSummary
      */
 
-    private String createOrderSummary (int calculatedPrice, boolean isChecked) {
+    private String createOrderSummary (int calculatedPrice, String topping1Y, String topping2Y) {
         String orderSummary = "name " + "surname\n";
-        orderSummary += "Add whipped cream? " + isChecked + "\n";
+        orderSummary += "Add whipped cream? " + topping1Y + "\n";
+        orderSummary += "Add chocolate topping? " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
         orderSummary += "Total: " + calculatedPrice + "\n";
         //String orderSummary = "Name: " + name + surname + "\nQuantity: " + quantity + "\nTotal: " + calculatedPrice + "\n"  + thankYou;
