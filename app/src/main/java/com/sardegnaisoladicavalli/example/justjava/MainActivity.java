@@ -20,8 +20,8 @@ public class MainActivity extends Activity {
     int quantity = 1;
     int price = 5;
     int calculatedPrice;
-    String orderSummary = "";
-    String userNameString = "";
+    String orderSummary;
+    String userNameString;
     Intent mail;
 
 
@@ -101,15 +101,16 @@ public class MainActivity extends Activity {
     private String createOrderSummary(int calculatedPrice) {
         Boolean isChecked_1 = topping1State();
         Boolean isChecked_2 = topping2State();
-        String topping1Y = isChecked_1 ? "Yes" : "No";
-        String topping2Y = isChecked_2 ? "Yes" : "No";
+        String topping1Y = isChecked_1 ? getString(R.string.yes) : getString(R.string.no);
+        String topping2Y = isChecked_2 ? getString(R.string.yes) : getString(R.string.no);
         EditText userName = (EditText) findViewById(R.id.userName);
-        String userNameString = userName.getText().toString();
-        orderSummary = "Name: " + userNameString + "\n";
-        orderSummary += getString(R.string.whipped_cream, topping1Y) + "\n";
-        orderSummary += getString(R.string.chocolate, topping2Y) + "\n";
+        userNameString = userName.getText().toString();
+        orderSummary = getString((R.string.email_subject), userNameString) + "\n";
+        orderSummary += getString(R.string.whipped_cream) + " " + topping1Y;
+        orderSummary += "\n" + getString(R.string.chocolate) + " " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
         orderSummary += "Total: " + calculatedPrice + "\n";
+        NumberFormat.getCurrencyInstance().format(calculatedPrice);
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(orderSummary);
         return orderSummary;
@@ -118,7 +119,7 @@ public class MainActivity extends Activity {
     public void composeEmail(View view) {
         mail.setData(Uri.parse("mailto:"));
         mail.putExtra(Intent.EXTRA_TEXT, orderSummary);
-        mail.putExtra(Intent.EXTRA_SUBJECT, "Coffee order from " + userNameString);
+        mail.putExtra(Intent.EXTRA_SUBJECT, (getString((R.string.email_subject), userNameString)));
         if (mail.resolveActivity(getPackageManager()) != null) {
             startActivity(mail);
         }
