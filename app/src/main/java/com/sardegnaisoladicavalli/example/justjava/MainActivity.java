@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mail = new Intent(Intent.ACTION_SEND);
+        mail = new Intent(Intent.ACTION_SENDTO);
 
     }
 
@@ -106,8 +106,8 @@ public class MainActivity extends Activity {
         EditText userName = (EditText) findViewById(R.id.userName);
         String userNameString = userName.getText().toString();
         orderSummary = "Name: " + userNameString + "\n";
-        orderSummary += "Add whipped cream? " + topping1Y + "\n";
-        orderSummary += "Add chocolate topping? " + topping2Y + "\n";
+        orderSummary += getString(R.string.whipped_cream, topping1Y) + "\n";
+        orderSummary += getString(R.string.chocolate, topping2Y) + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
         orderSummary += "Total: " + calculatedPrice + "\n";
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
         quantity = quantity + 1;
         if (quantity >= 10) {
             quantity = 10;
-            displayToast("Cannot order more than 10 coffees");
+            displayToast(getString(R.string.toast_increment));
         }
         displayQuantity(quantity);
     }
@@ -158,7 +158,7 @@ public class MainActivity extends Activity {
         quantity = quantity - 1;
         if (quantity == 1 | quantity < 1) {
             quantity = 1;
-            displayToast("Cannot order less than 1 coffee");
+            displayToast(getString(R.string.toast_decrement));
         }
         displayQuantity(quantity);
     }

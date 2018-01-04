@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Just Java</string>
     <string name="quantity_label">quantity</string>
     <string name="toppings_label">toppings</string>
@@ -11,5 +11,8 @@
     <string name="price_text_view">$0</string>
     <string name="decrement_button">-</string>
     <string name="increment_button">+</string>
-
+    <string name="toast_increment">Cannot order more than 10 coffees</string>
+    <string name = "toast_decrement">Cannot order less than 1 coffee</string>
+    <string name="whipped_cream">Add whipped cream? <xliff:g id="topping1Y" example= "yes">%s</xliff:g></string>
+    <string name="chocolate">Add chocolate topping?  <xliff:g id="topping2Y" example= "yes">%s</xliff:g></string>
 </resources>
