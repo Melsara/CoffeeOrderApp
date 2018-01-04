@@ -104,6 +104,10 @@ public class MainActivity extends Activity {
         return orderSummary;
     }
 
+    /**
+     * This method handles toast display.
+     * @param toastText
+     */
 
     public void displayToast (CharSequence toastText) {
         Context context = getApplicationContext();
@@ -111,7 +115,6 @@ public class MainActivity extends Activity {
         Toast toast = Toast.makeText(context, toastText, duration);
         toast.show();
     }
-
 
     /**
      * This method is called when the increment button is clicked.
