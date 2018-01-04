@@ -22,22 +22,24 @@ public class MainActivity extends Activity {
     int calculatedPrice;
     String orderSummary = "";
     String userNameString = "";
-    Intent mail = new Intent(Intent.ACTION_SEND);
+    Intent mail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mail = new Intent(Intent.ACTION_SEND);
+
     }
 
     /**
      * Handles the state of the Whipped Cream topping checkbox.
-     * @return isChecked_1
      *
+     * @return isChecked_1
      */
 
-    private boolean topping1State () {
+    private boolean topping1State() {
         CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
         Boolean isChecked_1 = topping1.isChecked();
         return isChecked_1;
@@ -45,11 +47,11 @@ public class MainActivity extends Activity {
 
     /**
      * Handles the state of the Chocolate topping checkbox.
-     * @return isChecked_2
      *
+     * @return isChecked_2
      */
 
-    private boolean topping2State () {
+    private boolean topping2State() {
         CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
         Boolean isChecked_2 = topping2.isChecked();
         return isChecked_2;
@@ -57,10 +59,10 @@ public class MainActivity extends Activity {
 
     /**
      * Calculates the price of the order.
+     *
      * @param isChecked_1 (for whipped cream)
      * @param isChecked_2 (for chocolate)
      * @return calculated price of the order
-     *
      */
     private int calculatePrice(boolean isChecked_1, boolean isChecked_2) {
         int baseprice = 0;
@@ -89,12 +91,14 @@ public class MainActivity extends Activity {
     }
 
 
-    /** Creates the order summary.
+    /**
+     * Creates the order summary.
+     *
      * @param calculatedPrice
      * @return orderSummary
      */
 
-    private String createOrderSummary (int calculatedPrice) {
+    private String createOrderSummary(int calculatedPrice) {
         Boolean isChecked_1 = topping1State();
         Boolean isChecked_2 = topping2State();
         String topping1Y = isChecked_1 ? "Yes" : "No";
@@ -122,10 +126,11 @@ public class MainActivity extends Activity {
 
     /**
      * This method handles toast display.
+     *
      * @param toastText
      */
 
-    public void displayToast (CharSequence toastText) {
+    public void displayToast(CharSequence toastText) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, toastText, duration);
@@ -136,32 +141,32 @@ public class MainActivity extends Activity {
      * This method is called when the increment button is clicked.
      */
 
-    public void increment (View view) {
-        quantity = quantity +1;
-        if (quantity>=10) {
+    public void increment(View view) {
+        quantity = quantity + 1;
+        if (quantity >= 10) {
             quantity = 10;
             displayToast("Cannot order more than 10 coffees");
         }
-        displayQuantity (quantity);
+        displayQuantity(quantity);
     }
 
     /**
      * This method is called when the increment button is clicked.
      */
 
-    public void decrement (View view) {
-        quantity = quantity -1;
-        if (quantity==1 | quantity<1) {
+    public void decrement(View view) {
+        quantity = quantity - 1;
+        if (quantity == 1 | quantity < 1) {
             quantity = 1;
             displayToast("Cannot order less than 1 coffee");
         }
-        displayQuantity (quantity);
+        displayQuantity(quantity);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayQuantity (int coffeeQuantity) {
+    private void displayQuantity(int coffeeQuantity) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + coffeeQuantity);
     }
