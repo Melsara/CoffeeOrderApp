@@ -1,7 +1,10 @@
 package com.sardegnaisoladicavalli.example.justjava;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,9 @@ public class MainActivity extends Activity {
     int quantity = 1;
     int price = 5;
     int calculatedPrice;
+    String orderSummary = "";
+    String userNameString = "";
+    Intent mail = new Intent(Intent.ACTION_SEND);
 
 
     @Override
@@ -77,6 +83,7 @@ public class MainActivity extends Activity {
         Boolean submitChecked_1 = topping1State();
         Boolean submitChecked_2 = topping2State();
         calculatePrice(submitChecked_1, submitChecked_2);
+        createOrderSummary(calculatedPrice);
         String message = createOrderSummary(calculatedPrice);
         displayMessage(message);
     }
@@ -94,7 +101,7 @@ public class MainActivity extends Activity {
         String topping2Y = isChecked_2 ? "Yes" : "No";
         EditText userName = (EditText) findViewById(R.id.userName);
         String userNameString = userName.getText().toString();
-        String orderSummary = "Name: " + userNameString + "\n";
+        orderSummary = "Name: " + userNameString + "\n";
         orderSummary += "Add whipped cream? " + topping1Y + "\n";
         orderSummary += "Add chocolate topping? " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
@@ -102,6 +109,15 @@ public class MainActivity extends Activity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(orderSummary);
         return orderSummary;
+    }
+
+    public void composeEmail(View view) {
+        mail.setData(Uri.parse("mailto:"));
+        mail.putExtra(Intent.EXTRA_TEXT, orderSummary);
+        mail.putExtra(Intent.EXTRA_SUBJECT, "Coffee order from " + userNameString);
+        if (mail.resolveActivity(getPackageManager()) != null) {
+            startActivity(mail);
+        }
     }
 
     /**
