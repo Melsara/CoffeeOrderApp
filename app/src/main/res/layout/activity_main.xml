@@ -136,6 +136,19 @@
         android:textAllCaps="true"
         android:textColor="@android:color/black" />
 
+        <Button
+            android:id="@+id/send_email_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/paddingDp"
+            android:layout_marginLeft="@dimen/paddingDp"
+            android:layout_marginRight="@dimen/paddingDp"
+            android:layout_marginTop="@dimen/paddingDp"
+            android:onClick="composeEmail"
+            android:text="@string/send_email_button"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 
 

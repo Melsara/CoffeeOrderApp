@@ -6,6 +6,7 @@
     <string name="topping_2">Chocolate</string>
     <string name="quantity_text_view">1</string>
     <string name="order_button">order</string>
+    <string name="send_email_button">send email</string>
     <string name="price_label">Order summary</string>
     <string name="price_text_view">$0</string>
     <string name="decrement_button">-</string>
