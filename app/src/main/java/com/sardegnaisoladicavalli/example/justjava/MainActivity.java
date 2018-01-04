@@ -23,54 +23,70 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+
+    private boolean topping1State () {
+        CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
+        Boolean isChecked_1 = topping1.isChecked();
+        return isChecked_1;
+    }
+
+    private boolean topping2State () {
+        CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
+        Boolean isChecked_2 = topping2.isChecked();
+        return isChecked_2;
+    }
+
+    /**
+     * Calculates the price of the order.
+     *
+     * @return calculated price of the order
+     *
+     */
+    private int calculatePrice(boolean isChecked_1, boolean isChecked_2) {
+        int baseprice = 0;
+        if (isChecked_1 && isChecked_2) {
+            baseprice = 3;
+        } else if (isChecked_1) {
+            baseprice = 1;
+        } else if (isChecked_2) {
+            baseprice = 2;
+        }
+
+        calculatedPrice = quantity * (price + baseprice);
+        return calculatedPrice;
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        calculatePrice();
-        //String priceMessage = "You owe " + calculatedPrice + "$, dude! \n" + thankYou;
-        CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
-        Boolean isChecked_1 = topping1.isChecked();
-        String topping1Y = isChecked_1 ? "Yes" : "No";
-        CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
-        Boolean isChecked_2 = topping2.isChecked();
-        String topping2Y = isChecked_2 ? "Yes" : "No";
-        EditText userName = (EditText) findViewById(R.id.userName);
-        String userNameString = userName.getText().toString();
-        String message = createOrderSummary(calculatedPrice, topping1Y, topping2Y, userNameString);
+        Boolean submitChecked_1 = topping1State();
+        Boolean submitChecked_2 = topping2State();
+        calculatePrice(submitChecked_1, submitChecked_2);
+        String message = createOrderSummary(calculatedPrice);
         displayMessage(message);
     }
 
 
     /** Creates the order summary.
-     *
-     * @param calculatedPrice (price of the order)
-     * @param topping1Y (whipped cream topping)
-     * @param topping2Y (chocolate topping)
      * @return orderSummary
      */
 
-    private String createOrderSummary (int calculatedPrice, String topping1Y, String topping2Y, String userNameString) {
-        String orderSummary = "Neme: " + userNameString + "\n";
+    private String createOrderSummary (int calculatedPrice) {
+        Boolean isChecked_1 = topping1State();
+        Boolean isChecked_2 = topping2State();
+        String topping1Y = isChecked_1 ? "Yes" : "No";
+        String topping2Y = isChecked_2 ? "Yes" : "No";
+        EditText userName = (EditText) findViewById(R.id.userName);
+        String userNameString = userName.getText().toString();
+        String orderSummary = "Name: " + userNameString + "\n";
         orderSummary += "Add whipped cream? " + topping1Y + "\n";
         orderSummary += "Add chocolate topping? " + topping2Y + "\n";
         orderSummary += "Quantity: " + quantity + "\n";
         orderSummary += "Total: " + calculatedPrice + "\n";
-        //String orderSummary = "Name: " + name + surname + "\nQuantity: " + quantity + "\nTotal: " + calculatedPrice + "\n"  + thankYou;
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(orderSummary);
         return orderSummary;
-    }
-
-    /**
-     * Calculates the price of the order.
-     * 
-     * @return calculated price of the order
-     *
-     */
-    private int calculatePrice() {
-        calculatedPrice = quantity * price;
-        return calculatedPrice;
     }
 
     /**
