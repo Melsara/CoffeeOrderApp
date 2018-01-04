@@ -1,18 +1,20 @@
 package com.sardegnaisoladicavalli.example.justjava;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
 public class MainActivity extends Activity {
 
-    int quantity;
+    int quantity = 1;
     int price = 5;
     int calculatedPrice;
 
@@ -23,12 +25,23 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Handles the state of the Whipped Cream topping checkbox.
+     * @return isChecked_1
+     *
+     */
 
     private boolean topping1State () {
         CheckBox topping1 = (CheckBox) findViewById(R.id.topping_1);
         Boolean isChecked_1 = topping1.isChecked();
         return isChecked_1;
     }
+
+    /**
+     * Handles the state of the Chocolate topping checkbox.
+     * @return isChecked_2
+     *
+     */
 
     private boolean topping2State () {
         CheckBox topping2 = (CheckBox) findViewById(R.id.topping_2);
@@ -38,7 +51,8 @@ public class MainActivity extends Activity {
 
     /**
      * Calculates the price of the order.
-     *
+     * @param isChecked_1 (for whipped cream)
+     * @param isChecked_2 (for chocolate)
      * @return calculated price of the order
      *
      */
@@ -69,6 +83,7 @@ public class MainActivity extends Activity {
 
 
     /** Creates the order summary.
+     * @param calculatedPrice
      * @return orderSummary
      */
 
@@ -89,12 +104,25 @@ public class MainActivity extends Activity {
         return orderSummary;
     }
 
+
+    public void displayToast (CharSequence toastText) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, toastText, duration);
+        toast.show();
+    }
+
+
     /**
      * This method is called when the increment button is clicked.
      */
 
     public void increment (View view) {
         quantity = quantity +1;
+        if (quantity>=10) {
+            quantity = 10;
+            displayToast("Cannot order more than 10 coffees");
+        }
         displayQuantity (quantity);
     }
 
@@ -104,6 +132,10 @@ public class MainActivity extends Activity {
 
     public void decrement (View view) {
         quantity = quantity -1;
+        if (quantity==1 | quantity<1) {
+            quantity = 1;
+            displayToast("Cannot order less than 1 coffee");
+        }
         displayQuantity (quantity);
     }
 
