@@ -30,8 +30,7 @@
         android:layout_marginRight="@dimen/paddingDp"
         android:layout_marginTop="@dimen/paddingDp"
         android:text="@string/toppings_label"
-        android:textAllCaps="true"
-        android:textColor="@android:color/darker_gray"/>
+        android:textAllCaps="true"/>
 
     <CheckBox
         android:id="@+id/topping_1"
@@ -60,8 +59,7 @@
         android:layout_marginRight="@dimen/paddingDp"
         android:layout_marginTop="@dimen/paddingDp"
         android:text="@string/quantity_label"
-        android:textAllCaps="true"
-        android:textColor="@android:color/darker_gray" />
+        android:textAllCaps="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -77,14 +75,13 @@
             android:onClick="decrement"
             android:text="@string/decrement_button"
             android:textAllCaps="true"
-            android:textColor="@android:color/black" />
+            android:background="#FFC107"/>
 
         <TextView
             android:id="@+id/quantity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quantity_text_view"
-            android:textColor="@android:color/black"
             android:textSize="@dimen/fontSize" />
 
         <Button
@@ -97,7 +94,7 @@
             android:onClick="increment"
             android:text="@string/increment_button"
             android:textAllCaps="true"
-            android:textColor="@android:color/black" />
+            android:background="#FFC107"/>
 
     </LinearLayout>
 
@@ -110,7 +107,6 @@
         android:layout_marginRight="@dimen/paddingDp"
         android:text="@string/price_label"
         android:textAllCaps="true"
-        android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/fontSize"/>
 
     <TextView
@@ -120,7 +116,6 @@
         android:layout_marginLeft="@dimen/paddingDp"
         android:layout_marginRight="@dimen/paddingDp"
         android:textAllCaps="false"
-        android:textColor="@android:color/black"
         android:textSize="@dimen/fontSize" />
 
     <Button
@@ -134,7 +129,7 @@
         android:onClick="submitOrder"
         android:text="@string/order_button"
         android:textAllCaps="true"
-        android:textColor="@android:color/black" />
+        android:background="#FFC107"/>
 
         <Button
             android:id="@+id/send_email_button"
@@ -144,10 +139,11 @@
             android:layout_marginLeft="@dimen/paddingDp"
             android:layout_marginRight="@dimen/paddingDp"
             android:layout_marginTop="@dimen/paddingDp"
+            android:padding="@dimen/paddingDp"
             android:onClick="composeEmail"
             android:text="@string/send_email_button"
             android:textAllCaps="true"
-            android:textColor="@android:color/black" />
+            android:background="#FFC107"/>
 
     </LinearLayout>
 
